@@ -1,0 +1,30 @@
+{
+  "uniqueArtworks": 270,
+  "categoryAssetCopies": 333,
+  "bestsellerSelections": 18,
+  "categoryMemberships": {
+    "nature-animaux": 144,
+    "culture-marocaine": 44,
+    "abstrait": 72,
+    "art-islamique": 22,
+    "minimaliste-geometrique": 31
+  },
+  "duplicateArtworkGroups": 53,
+  "extraDuplicateCopies": 63,
+  "imagesOutput": 270,
+  "colorLabels": {
+    "blue": 76,
+    "grey": 177,
+    "white": 178,
+    "beige": 108,
+    "brown": 82,
+    "multicolor": 135,
+    "yellow": 33,
+    "green": 23,
+    "orange": 96,
+    "red": 35,
+    "black": 48,
+    "purple": 7,
+    "pink": 4
+  }
+}
