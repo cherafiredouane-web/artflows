@@ -1,5 +1,5 @@
 
-name: Deploy ARTFLOW to Vercel
+name: ARTFLOW - Vercel Production Deployment
 
 on:
   push:
@@ -16,6 +16,7 @@ concurrency:
 
 jobs:
   deploy:
+    name: Build and Deploy ARTFLOW
     runs-on: ubuntu-latest
 
     env:
@@ -27,14 +28,30 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Verify Vercel credentials
+        shell: bash
+        run: |
+          test -n "$VERCEL_TOKEN" || {
+            echo "::error::Missing VERCEL_TOKEN secret"
+            exit 1
+          }
+          test -n "$VERCEL_ORG_ID" || {
+            echo "::error::Missing VERCEL_ORG_ID secret"
+            exit 1
+          }
+          test -n "$VERCEL_PROJECT_ID" || {
+            echo "::error::Missing VERCEL_PROJECT_ID secret"
+            exit 1
+          }
+
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
       - name: Pull Vercel configuration
-        run: vercel pull --yes --environment=production
+        run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
 
       - name: Build ARTFLOW
-        run: vercel build --prod
+        run: vercel build --prod --token="$VERCEL_TOKEN"
 
-      - name: Deploy to production
-        run: vercel deploy --prebuilt --prod
+      - name: Deploy ARTFLOW to production
+        run: vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
